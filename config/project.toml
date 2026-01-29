@@ -1,0 +1,33 @@
+# Phoenix Engine - Project Configuration
+
+[project]
+name = "My Action Adventure Game"
+version = "0.1.0"
+author = "Game Developer"
+
+[window]
+width = 1920
+height = 1080
+title = "Phoenix Adventure"
+fullscreen = false
+vsync = true
+resizable = true
+
+[physics]
+gravity_x = 0.0
+gravity_y = -980.0
+fixed_timestep = 0.01666666  # 1/60
+
+[audio]
+master_volume = 1.0
+music_volume = 0.7
+sfx_volume = 1.0
+
+[rendering]
+pixel_perfect = true
+default_filter = "nearest"  # "nearest" or "linear"
+
+[debug]
+show_fps = true
+show_colliders = false
+show_grid = true

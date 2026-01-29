@@ -1,0 +1,17 @@
+{
+    "player": {
+        "max_health": 100,
+        "move_speed": 200.0,
+        "jump_force": 500.0,
+        "attack_damage": 25,
+        "attack_cooldown": 0.5,
+        "invincibility_time": 1.0
+    },
+    "enemies": {},
+    "items": {},
+    "levels": {},
+    "custom": {
+        "game_title": "My Phoenix Game",
+        "version": "1.0.0"
+    }
+}
