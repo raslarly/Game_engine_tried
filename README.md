@@ -46,8 +46,14 @@ cargo build --release
 
 ### Running
 
+Run the engine with default settings (Python disabled):
 ```bash
 cargo run
+```
+
+To enable Python scripting support (requires compatible Python 3.8-3.12 installed):
+```bash
+cargo run --features python
 ```
 
 ## Project Structure

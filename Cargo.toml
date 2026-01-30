@@ -15,7 +15,7 @@ egui_extras = { version = "0.29", features = ["all_loaders", "image"] }
 # Graphics & Rendering
 wgpu = "22.0"
 image = "0.25"
-glam = "0.29"  # Math library for vectors and matrices
+glam = { version = "0.29", features = ["serde"] }  # Math library for vectors and matrices
 
 # Audio
 rodio = "0.19"

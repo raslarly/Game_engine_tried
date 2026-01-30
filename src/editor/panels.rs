@@ -122,31 +122,35 @@ impl InspectorPanel {
             egui::CollapsingHeader::new("📐 Transform")
                 .default_open(true)
                 .show(ui, |ui| {
-                    if let Some(mut transform) = world.get_mut::<Transform>(id) {
-                        ui.horizontal(|ui| {
-                            ui.label("Position:");
-                            ui.add(egui::DragValue::new(&mut transform.position.x).prefix("X: ").speed(1.0));
-                            ui.add(egui::DragValue::new(&mut transform.position.y).prefix("Y: ").speed(1.0));
-                        });
-                        
-                        ui.horizontal(|ui| {
-                            ui.label("Rotation:");
-                            let mut degrees = transform.rotation.to_degrees();
-                            if ui.add(egui::DragValue::new(&mut degrees).suffix("°").speed(1.0)).changed() {
-                                transform.rotation = degrees.to_radians();
-                            }
-                        });
-                        
-                        ui.horizontal(|ui| {
-                            ui.label("Scale:");
-                            ui.add(egui::DragValue::new(&mut transform.scale.x).prefix("X: ").speed(0.1));
-                            ui.add(egui::DragValue::new(&mut transform.scale.y).prefix("Y: ").speed(0.1));
-                        });
-                        
-                        ui.horizontal(|ui| {
-                            ui.label("Z-Order:");
-                            ui.add(egui::DragValue::new(&mut transform.z_order).speed(0.1));
-                        });
+                    let has_transform = world.get::<Transform>(id).is_some();
+                    
+                    if has_transform {
+                        if let Some(mut transform) = world.get_mut::<Transform>(id) {
+                            ui.horizontal(|ui| {
+                                ui.label("Position:");
+                                ui.add(egui::DragValue::new(&mut transform.position.x).prefix("X: ").speed(1.0));
+                                ui.add(egui::DragValue::new(&mut transform.position.y).prefix("Y: ").speed(1.0));
+                            });
+                            
+                            ui.horizontal(|ui| {
+                                ui.label("Rotation:");
+                                let mut degrees = transform.rotation.to_degrees();
+                                if ui.add(egui::DragValue::new(&mut degrees).suffix("°").speed(1.0)).changed() {
+                                    transform.rotation = degrees.to_radians();
+                                }
+                            });
+                            
+                            ui.horizontal(|ui| {
+                                ui.label("Scale:");
+                                ui.add(egui::DragValue::new(&mut transform.scale.x).prefix("X: ").speed(0.1));
+                                ui.add(egui::DragValue::new(&mut transform.scale.y).prefix("Y: ").speed(0.1));
+                            });
+                            
+                            ui.horizontal(|ui| {
+                                ui.label("Z-Order:");
+                                ui.add(egui::DragValue::new(&mut transform.z_order).speed(0.1));
+                            });
+                        }
                     } else {
                         if ui.button("Add Transform").clicked() {
                             world.add_component(id, Transform::default());
