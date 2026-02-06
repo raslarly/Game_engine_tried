@@ -85,6 +85,19 @@ phoenix_engine/
 │       ├── combat.rs     # Combat mechanics
 │       ├── inventory.rs  # Item management
 │       └── dialogue.rs   # NPC dialogue
+├── examples/             # Example games
+│   └── platformer_demo/  # Complete platformer demo
+│       ├── mod.rs
+│       ├── demo_game.rs  # Main game logic
+│       ├── demo_player.rs # Player controller
+│       ├── demo_enemy.rs # Enemy AI
+│       └── demo_level.rs # Level builder
+├── docs/                 # Documentation
+│   ├── index.md          # Documentation home
+│   ├── getting-started.md # Quick start guide
+│   ├── core-concepts.md  # Architecture overview
+│   ├── game-systems.md   # Player, combat, inventory
+│   └── api-reference.md  # Complete API docs
 ├── assets/               # Game assets
 │   ├── sprites/          # Sprite images
 │   ├── audio/            # Sound files

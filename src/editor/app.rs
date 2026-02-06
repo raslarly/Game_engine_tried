@@ -208,34 +208,35 @@ impl EditorApp {
                 // Python menu
                 ui.menu_button("🐍 Python", |ui| {
                     let has_python = self.python.is_some();
-                    ui.set_enabled(has_python);
                     
-                    if ui.button("Run Script...").clicked() {
-                        if let Some(path) = rfd::FileDialog::new()
-                            .add_filter("Python Script", &["py"])
-                            .pick_file()
-                        {
-                            if let Some(ref mut py) = self.python {
-                                match std::fs::read_to_string(&path) {
-                                    Ok(code) => match py.execute(&code) {
-                                        Ok(_) => self.log(LogLevel::Info, "Script executed successfully"),
-                                        Err(e) => self.log(LogLevel::Error, &format!("Script error: {}", e)),
-                                    },
-                                    Err(e) => self.log(LogLevel::Error, &format!("Failed to read script: {}", e)),
+                    ui.add_enabled_ui(has_python, |ui| {
+                        if ui.button("Run Script...").clicked() {
+                            if let Some(path) = rfd::FileDialog::new()
+                                .add_filter("Python Script", &["py"])
+                                .pick_file()
+                            {
+                                if let Some(ref mut py) = self.python {
+                                    match std::fs::read_to_string(&path) {
+                                        Ok(code) => match py.execute(&code) {
+                                            Ok(_) => self.log(LogLevel::Info, "Script executed successfully"),
+                                            Err(e) => self.log(LogLevel::Error, &format!("Script error: {}", e)),
+                                        },
+                                        Err(e) => self.log(LogLevel::Error, &format!("Failed to read script: {}", e)),
+                                    }
                                 }
                             }
+                            ui.close_menu();
                         }
-                        ui.close_menu();
-                    }
-                    if ui.button("Open Config Editor").clicked() {
-                        self.log(LogLevel::Info, "Opening Python config editor...");
-                        ui.close_menu();
-                    }
-                    ui.separator();
-                    if ui.button("Reload Scripts").clicked() {
-                        self.log(LogLevel::Info, "Reloading Python scripts...");
-                        ui.close_menu();
-                    }
+                        if ui.button("Open Config Editor").clicked() {
+                            self.log(LogLevel::Info, "Opening Python config editor...");
+                            ui.close_menu();
+                        }
+                        ui.separator();
+                        if ui.button("Reload Scripts").clicked() {
+                            self.log(LogLevel::Info, "Reloading Python scripts...");
+                            ui.close_menu();
+                        }
+                    });
                     
                     if !has_python {
                         ui.separator();

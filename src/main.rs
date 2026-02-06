@@ -3,6 +3,10 @@
 //! This engine provides a complete framework for building 2D action-adventure games
 //! with Python scripting support for configuration and gameplay logic.
 
+// Allow dead code for engine library methods that are part of the public API
+// These methods are intended for use by game developers, not internally
+#![allow(dead_code)]
+
 mod engine;
 mod editor;
 mod scripting;

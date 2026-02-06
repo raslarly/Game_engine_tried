@@ -288,7 +288,7 @@ impl Renderer {
         sprite: &Sprite,
         position: Vec2,
         scale: Vec2,
-        rotation: f32,
+        _rotation: f32,
     ) {
         if !sprite.visible {
             return;

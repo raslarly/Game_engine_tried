@@ -11,6 +11,7 @@ pub mod api;
 
 #[cfg(feature = "python")]
 pub use runtime::PythonRuntime;
+#[allow(unused_imports)]
 pub use config::ConfigManager;
 
 /// Stub Python runtime when the python feature is disabled
